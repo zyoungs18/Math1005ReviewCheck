@@ -98,4 +98,53 @@
   </style>
 </head>
 <body>
-  <div class="containe
+  <div class="container">
+    <div class="success-message" id="successMessage">Success!</div>
+    <div class="inner-box">
+      <h2>Enter Password Below!</h2>
+      <input id="password" type="text" placeholder="Type password..." />
+    </div>
+  </div>
+
+  <script>
+    const input = document.getElementById("password");
+    const successMsg = document.getElementById("successMessage");
+
+    input.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        if (input.value === "1234") {
+          showSuccess();
+        } else {
+          successMsg.classList.remove("show");
+        }
+      }
+    });
+
+    function showSuccess() {
+      successMsg.classList.add("show");
+      makeConfetti();
+      setTimeout(() => {
+        successMsg.classList.remove("show");
+      }, 3000);
+    }
+
+    function makeConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        document.body.appendChild(confetti);
+        const size = Math.random() * 8 + 4;
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.top = `${-10}px`;
+        confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+  </script>
+</body>
+</html>
