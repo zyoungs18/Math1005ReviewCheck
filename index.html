@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Check</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 200px;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <input id="password" type="password" placeholder="Enter password" />
+    <br />
+    <button onclick="checkPassword()">Submit</button>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === "1234") {
+        alert("Success!");
+      } else {
+        alert("Incorrect password.");
+      }
+    }
+  </script>
+</body>
+</html>
