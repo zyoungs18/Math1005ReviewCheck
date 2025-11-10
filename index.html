@@ -6,37 +6,66 @@
   <title>Password Check</title>
   <style>
     body {
-	  background-color: #CCC2ED;
+      background-color: #CCC2ED;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       font-family: Arial, sans-serif;
     }
+
+    /* Outer container: slightly raised off the background */
     .container {
       text-align: center;
-	  background-color: #D1C7F2;
+      background-color: #D1C7F2;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
+
+    /* Inner "card" for content: raised above the container */
+    .inner-box {
+      background-color: #E6DEFA;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      display: inline-block;
+    }
+
     h2 {
       font-family: "Comic Sans MS", cursive;
       font-size: 28px;
       margin-bottom: 20px;
       color: #333;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
+
     input {
       padding: 10px;
       font-size: 18px;
       border-radius: 8px;
-      border: 1px solid #ccc;
+      border: 1px solid #aaa;
       width: 200px;
       text-align: center;
+      background-color: #fff;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Subtle animation when focused */
+    input:focus {
+      outline: none;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Enter Password Below!</h2>
-    <input id="password" type="text" placeholder="Type password..." />
+    <div class="inner-box">
+      <h2>Enter Password Below!</h2>
+      <input id="password" type="text" placeholder="Type password..." />
+    </div>
   </div>
 
   <script>
