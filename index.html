@@ -58,14 +58,12 @@
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
 
-    /* Success message above platform */
+    /* Message above platform */
     .success-message {
       position: absolute;
       top: -60px;
       left: 50%;
       transform: translateX(-50%);
-      background: #7BFF9C;
-      color: #1a1a1a;
       padding: 12px 24px;
       border-radius: 12px;
       font-weight: bold;
@@ -77,6 +75,19 @@
     .success-message.show {
       opacity: 1;
       transform: translateX(-50%) translateY(-10px);
+    }
+
+    /* Shake animation */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-10px); }
+      40% { transform: translateX(10px); }
+      60% { transform: translateX(-10px); }
+      80% { transform: translateX(10px); }
+    }
+
+    .shake {
+      animation: shake 0.5s;
     }
 
     /* Confetti pieces */
@@ -99,7 +110,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="success-message" id="successMessage">Success!</div>
+    <div class="success-message" id="successMessage"></div>
     <div class="inner-box">
       <h2>Enter Password Below!</h2>
       <input id="password" type="text" placeholder="Type password..." />
@@ -113,16 +124,25 @@
     input.addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
         if (input.value === "1234") {
-          showSuccess();
+          showMessage("Success!", "#7BFF9C", true);
         } else {
-          successMsg.classList.remove("show");
+          showMessage("Try Again", "#FF7B7B", false, true);
         }
       }
     });
 
-    function showSuccess() {
+    function showMessage(message, color, confetti, shakeInput = false) {
+      successMsg.textContent = message;
+      successMsg.style.backgroundColor = color;
       successMsg.classList.add("show");
-      makeConfetti();
+
+      if (confetti) makeConfetti();
+
+      if (shakeInput) {
+        input.classList.add("shake");
+        setTimeout(() => input.classList.remove("shake"), 500);
+      }
+
       setTimeout(() => {
         successMsg.classList.remove("show");
       }, 3000);
